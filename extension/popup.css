@@ -1,0 +1,481 @@
+/* Color System - Maggie's Memory App Design Language */
+:root {
+  --bg-dark: #020A1E;
+  /* Deep Navy Black */
+  --card-bg: rgba(2, 10, 30, 0.85);
+  /* Glassmorphic deep navy */
+  --border-color: rgba(209, 168, 89, 0.15);
+  /* Gold border color */
+
+  --primary-gradient: linear-gradient(135deg, #2B519C 0%, #1e3a70 100%);
+  /* Cobalt Blue gradient */
+  --success-gradient: linear-gradient(135deg, #A3D2A6 0%, #7dbd81 100%);
+  /* Seafoam Green gradient */
+
+  --text-primary: #FFFFFF;
+  /* Crisp White */
+  --text-secondary: #a0aec0;
+  /* Soft gray-white */
+  --text-muted: #718096;
+
+  --accent-color: #D1A859;
+  /* Gilded Gold */
+  --accent-glow: rgba(209, 168, 89, 0.25);
+
+  --color-navy: #020A1E;
+  --color-cobalt: #2B519C;
+  --color-gold: #D1A859;
+  --color-white: #FFFFFF;
+  --color-seafoam: #A3D2A6;
+  --color-forest: #4C5C42;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  width: 340px;
+  height: 400px;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+/* Glassmorphic main container */
+.card {
+  width: 100%;
+  height: 100%;
+  padding: 28px 16px 16px 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: center;
+  position: relative;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 3px solid rgba(99, 102, 241, 0.1);
+  border-radius: 50%;
+  border-top-color: #6366f1;
+  border-right-color: #a855f7;
+  animation: spin 1s linear infinite;
+  z-index: 2;
+}
+
+/* Preview Card */
+
+.preview-card {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.preview-details {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.preview-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+
+.preview-url {
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Done Button */
+.btn {
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-gold);
+  background: var(--color-cobalt);
+  border: 1px solid var(--color-gold);
+  border-radius: 8px;
+  padding: 10px 24px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 4px 12px rgba(43, 81, 156, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  background: #345eb0;
+  box-shadow: 0 6px 16px rgba(43, 81, 156, 0.35);
+}
+
+.btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Tabs Navigation */
+.tabs-nav {
+  display: flex;
+  width: 100%;
+  border-bottom: 2px solid var(--color-cobalt);
+  margin-bottom: 12px;
+  gap: 4px;
+}
+
+.tab-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 6px 10px;
+  color: var(--text-secondary);
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+}
+
+.tab-btn.active {
+  color: var(--color-white);
+  border-bottom-color: var(--color-gold);
+  background: rgba(43, 81, 156, 0.15);
+  border-radius: 6px 6px 0 0;
+}
+
+/* Tab Content Visibility */
+.tab-content {
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+.tab-content.active {
+  display: flex;
+}
+
+/* Search Tab Styling */
+.search-box {
+  display: flex;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 2px 8px;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.search-box:focus-within {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+#search-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  padding: 8px 4px;
+}
+
+.search-submit-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  transition: color 0.2s ease;
+}
+
+.search-submit-btn:hover {
+  color: var(--text-primary);
+}
+
+.search-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.search-results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  flex: 1;
+  padding-right: 2px;
+}
+
+/* Custom scrollbar for search results */
+.search-results-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.search-results-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.search-results-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.search-result-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+  padding: 10px 12px;
+  text-align: left;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.search-result-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--color-gold);
+}
+
+.search-result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.search-result-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.search-result-score {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--color-navy);
+  background: var(--color-seafoam);
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+
+.search-result-summary {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.search-result-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+}
+
+.search-result-category {
+  color: var(--color-gold);
+  background: rgba(209, 168, 89, 0.12);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.search-result-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+}
+
+.search-result-link:hover {
+  color: var(--text-secondary);
+  text-decoration: underline;
+}
+
+.search-empty-state,
+.search-loading-state,
+.search-error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 32px 16px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  flex: 1;
+}
+
+.search-loading-state .spinner {
+  width: 24px;
+  height: 24px;
+  border-width: 2px;
+  margin-bottom: 8px;
+}
+
+
+
+/* Save Container and Manual Save UI */
+.save-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  height: 100%;
+  padding: 16px 8px;
+}
+
+.tab-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.01em;
+  text-align: left;
+}
+
+.tab-subtitle {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.btn.disabled,
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.btn-save-action {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  min-width: 140px;
+  height: 38px;
+  gap: 8px;
+}
+
+.btn-save-action.saved {
+  background: var(--color-forest) !important;
+  color: var(--color-white) !important;
+  border-color: var(--color-forest) !important;
+  opacity: 0.8;
+  cursor: not-allowed;
+  box-shadow: none !important;
+}
+
+.btn-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+}
+
+.save-error-msg {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 8px;
+  font-size: 11px;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  text-align: left;
+  line-height: 1.4;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Maggie the Magpie Animations & Styles */
+
+
+.maggie-success-nest {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 18px;
+}
+
+.maggie-success-img {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+.maggie-bubble {
+  background: rgba(163, 210, 166, 0.1);
+  border: 1px solid var(--color-seafoam);
+  color: var(--color-seafoam);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  margin-top: 6px;
+  font-weight: 500;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}

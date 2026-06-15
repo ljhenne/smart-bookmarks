@@ -1,0 +1,14 @@
+{
+  "name": "smart-bookmarks",
+  "version": "1.0.0",
+  "description": "A simple Chrome extension to capture page content and save to a backend system.",
+  "main": "dist/popup.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.268",
+    "typescript": "^5.4.5"
+  }
+}
