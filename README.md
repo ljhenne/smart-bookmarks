@@ -56,16 +56,24 @@ fastapi dev main.py
 ```
 
 ### 2. Chrome Extension (TypeScript)
-Navigate to the `extension/` directory.
-
-Since this project avoids complex build tools to remain accessible, you only need the TypeScript compiler to build the scripts:
+Navigate to the `extension/` directory, install local dependencies, and compile the code:
 
 ```bash
 cd extension
-npm install -g typescript
-tsc
+npm install
+npm run build
 ```
-*(You can also use `tsc --watch` to compile as you make changes).*
+*(You can also run `npm run watch` to compile dynamically as you make changes).*
+
+**To configure the API endpoint:**
+Create a file named `config.json` in the `extension/` directory (this file is excluded from git so you can customize it locally):
+
+```json
+{
+  "API_BASE_URL": "http://localhost:8000"
+}
+```
+*Change `http://localhost:8000` to your Cloud Run URL once deployed.*
 
 **To load the extension in Chrome:**
 1. Open Chrome and navigate to `chrome://extensions/`.
@@ -76,13 +84,11 @@ tsc
 
 A deployment script is provided to push the backend to Google Cloud Run. 
 
-From the `service/` directory, ensure your variables are set, then run:
+From the project root directory, ensure your variables are set, then run:
 
 ```bash
-./deploy.sh
+./scripts/deploy.sh
 ```
-
-Ensure the Chrome Extension points to your newly deployed Cloud Run URL instead of `localhost` in `api.ts` before compiling your final extension build.
 
 ## 🤝 Contributing
 
